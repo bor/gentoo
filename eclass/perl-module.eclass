@@ -358,7 +358,7 @@ perl-module_src_test() {
 			return 0
 		fi
 
-		if has verbose ${my_test_control} ; then
+		if has verbose ${my_test_control} || ${MY_PN} == 9999 ; then
 			my_test_verbose=1
 		else
 			my_test_verbose=0
