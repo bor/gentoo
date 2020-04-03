@@ -59,4 +59,10 @@ pkg_postinst() {
 	elog "the permissions on /var/tmp/g-cpan or add users to the portage group."
 	elog "Please note that some CPAN packages need additional manual"
 	elog "parameters or tweaking, due to bugs in their build systems."
+
+	# workaround, since diropts in src_install doesn't work propertly
+	#  for the portage group and merging changes back the group to root
+	if ! use prefix; then
+		chown -R portage:portage "${EROOT}/var/log/g-cpan" "${EROOT}/var/tmp/g-cpan"
+	fi
 }
